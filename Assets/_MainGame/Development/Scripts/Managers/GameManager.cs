@@ -5,6 +5,7 @@ namespace VertigoCase.Runtime
 {
     public class GameManager : MonoSingleton<GameManager>
     {
+        [SerializeField] private GameDataSO gameData;
         protected override void Awake()
         {
             Initializer();
@@ -16,6 +17,8 @@ namespace VertigoCase.Runtime
             {
                 if (obj is IGameInitializer initializer)
                     initializer.Initialize();
+                else if (obj is IGameDataConsumer dataConsumer)
+                    dataConsumer.Initialize(gameData);
             }
         }
     }

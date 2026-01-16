@@ -1,8 +1,28 @@
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
+using TMPro;
 
 namespace VertigoCase.Helpers.Extensions
 {
+    public static class GeneralExtensions
+    {
+        public static void DOTypeText(this TextMeshProUGUI text, int targetValue, float duration)
+        {
+            int startValue = int.TryParse(text.text, out int v) ? v : 0;
+
+            DOTween.To(
+               () => startValue,
+               x =>
+               {
+                   startValue = x;
+                   text.SetText(x.ToString());
+               },
+               targetValue,
+               duration
+           ).SetEase(Ease.OutCubic);
+        }
+    }
     public static class ImageExtensions
     {
         public static void FitInside(this Image targetImage, Image containerImage)
@@ -28,5 +48,16 @@ namespace VertigoCase.Helpers.Extensions
 
             targetRect.anchoredPosition = Vector2.zero;
         }
+    }
+    public static class MathExtensions
+    {
+        public static int IntervalIndexByLevel(int interval, int level)
+        {
+            if (interval <= 0 || level <= 0)
+                return 1;
+
+            return (level - 1) / interval + 1;
+        }
+
     }
 }

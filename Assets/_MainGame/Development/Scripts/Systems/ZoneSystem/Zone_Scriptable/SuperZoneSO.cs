@@ -10,7 +10,6 @@ namespace VertigoCase.Systems.ZoneSystem
 
         [Header("Super Zone Settings")][Tooltip("Manuel aşağıda eklendiği şekilde mi seviyeler belirlensin? yoksa step bazlı mı?")]
         public bool useIntervalProgression = true;
-
-        public List<ManualSuperReward> manualSuperRewards;
+        public List<ZoneInfoSuperReward> zoneInfoSuperRewards;
     }
 }

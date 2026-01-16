@@ -5,6 +5,7 @@ namespace VertigoCase.Systems.ZoneSystem
     {
         Normal,
         Safe,
-        Super
+        Super,
+        None
     }
 }

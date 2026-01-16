@@ -12,9 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3efa747b8a612426386c6071dc673540, type: 3}
   m_Name: SuperZone
   m_EditorClassIdentifier: 
+  rewardedData: []
   triggerInterval: 5
   rewardValueMultiplier: 3
   useIntervalProgression: 1
-  manualSuperRewards:
-  - image: {fileID: 0}
-    level: 0
+  zoneInfoSuperRewards:
+  - reward: {fileID: 11400000, guid: a218becfd9d98445e9d1e9d6674c4c96, type: 2}
+    level: 5
+  - reward: {fileID: 11400000, guid: 126c159fb86e64328bdf3407efedf0ea, type: 2}
+    level: 10
+  - reward: {fileID: 11400000, guid: 27d3828c8b23d4ce78c5655b2504129d, type: 2}
+    level: 15
+  - reward: {fileID: 11400000, guid: fc492efca531a425e829ec40afa8acc6, type: 2}
+    level: 20
+  - reward: {fileID: 11400000, guid: 47703865427ea48668440de074e137ab, type: 2}
+    level: 25
+  - reward: {fileID: 11400000, guid: 7b592984bd143469c8a1be1f33eaefe2, type: 2}
+    level: 30
+  - reward: {fileID: 11400000, guid: d7cf4622c6b784c2681c132c266afa23, type: 2}
+    level: 35
