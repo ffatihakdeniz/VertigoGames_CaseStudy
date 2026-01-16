@@ -5,8 +5,12 @@ namespace VertigoCase.Systems.ZoneSystem
 {
     public abstract class ZoneBaseSO : ScriptableObject
     {
-        public abstract ZoneType ZoneType { get; }
-        public List<RewardSO> rewardedData = new List<RewardSO>();
+        public abstract ZoneType zoneType { get; }
+
+        [Header("Slide Info Panel Settings")]
+        public Color slidePanelLevelPointColor = Color.white;
+        //public Sprite slidePanelCursorImage;
+        //public List<RewardSO> rewardedData = new List<RewardSO>();
 
         [Header("Zone Level Settings")]
         public int triggerInterval = 5;

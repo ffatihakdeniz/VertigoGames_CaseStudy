@@ -22,6 +22,11 @@ namespace VertigoCase.Helpers.Extensions
                duration
            ).SetEase(Ease.OutCubic);
         }
+        public static void DoMaxSize(this Transform textTransform, int maxSize) =>
+            textTransform.GetComponent<TextMeshProUGUI>().fontSizeMax = maxSize;
+        public static void DoMaxSize(this GameObject textTransform, int maxSize) =>
+            textTransform.GetComponent<TextMeshProUGUI>().fontSizeMax = maxSize;
+
     }
     public static class ImageExtensions
     {

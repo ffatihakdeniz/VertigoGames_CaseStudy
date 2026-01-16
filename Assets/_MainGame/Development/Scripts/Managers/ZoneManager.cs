@@ -1,10 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Patterns.Singleton;
 using VertigoCase.Runtime;
-using VertigoCase.Helpers.Extensions;
-using System.Linq;
 
 namespace VertigoCase.Systems.ZoneSystem
 {
@@ -14,6 +11,27 @@ namespace VertigoCase.Systems.ZoneSystem
         GameDataSO gameData;
         private ZoneRewardResolver _rewardResolver;
 
+        public int StartedLevel => gameData.startedLevel;
+        public int IntervalLevelBySuperZone
+        {
+            get
+            {
+                var superZone = GetZoneSOByZoneType(ZoneType.Super);
+                if (superZone != null)
+                    return superZone.triggerInterval;
+                throw new System.Exception("Super Zone SO eklenmemis");
+            }
+        }
+        public int IntervalLevelBySafeZone
+        {
+            get
+            {
+                var safeZone = GetZoneSOByZoneType(ZoneType.Safe);
+                if (safeZone != null)
+                    return safeZone.triggerInterval;
+                throw new System.Exception("Safe Zone SO eklenmemis");
+            }
+        }
 
         public int CurrentLevel
         {
@@ -39,8 +57,8 @@ namespace VertigoCase.Systems.ZoneSystem
         {
             get
             {
-                float multiplier = zoneDataList.Find(z => z.ZoneType == GetZoneByLevel()).rewardValueMultiplier;
-                return Mathf.Pow(1f + gameData.zoneMultiplierIncreaseRate, CurrentZoneGeneralIntervalCount)*multiplier;
+                float multiplier = zoneDataList.Find(z => z.zoneType == GetZoneTypeByLevel()).rewardValueMultiplier;
+                return Mathf.Pow(1f + gameData.zoneMultiplierIncreaseRate, CurrentZoneGeneralIntervalCount) * multiplier;
             }
         }
 
@@ -57,9 +75,13 @@ namespace VertigoCase.Systems.ZoneSystem
             //TODO
         }
 
-        public ZoneType GetZoneByLevel() // Mevcut seviye hangi zone grubun ait
+        public ZoneType GetZoneTypeByLevel() // Mevcut seviye hangi zone grubun ait
         {
             return _rewardResolver.GetZoneByLevel(CurrentLevel);
+        }
+        public ZoneBaseSO GetZoneByLevel() // Mevcut seviye hangi zone grubun ait
+        {
+            return zoneDataList.Find(z => z.zoneType == GetZoneTypeByLevel());
         }
         public ZoneInfoSuperReward GetSuperZoneNextRewardByInterval()// Siradaki super bolge seviyesi ve odul gorseli
         {
@@ -69,6 +91,10 @@ namespace VertigoCase.Systems.ZoneSystem
         {
             return _rewardResolver.GetSafeZoneNextRewardByInterval(CurrentLevel);
         }
+        public ZoneBaseSO GetZoneSOByZoneType(ZoneType zoneType)
+        {
+            return zoneDataList.Find(z => z.zoneType == zoneType);
+        }
 
 
 
@@ -79,29 +105,5 @@ namespace VertigoCase.Systems.ZoneSystem
 
 
 
-        
     }
 }
-/*
-public ZoneInfoSuperReward GetSuperZoneRewardByLevel()
-        {
-            if(GetZoneByLevel() != ZoneType.Super)
-                return null;
-            var superZone = zoneDataList.Find(z => z.zoneType == ZoneType.Super) as SuperZoneSO;
-            if (superZone == null)
-                return null;
-
-            if (superZone.useIntervalProgression)
-            {
-                int intervalIndex = CurrentLevel / superZone.triggerInterval;
-                if (intervalIndex < superZone.zoneInfoSuperRewards.Count)
-                    return superZone.zoneInfoSuperRewards[intervalIndex];
-            }
-            else
-            {
-                var rndReward = superZone.zoneInfoSuperRewards[Random.Range(0, superZone.zoneInfoSuperRewards.Count)].image;
-                var newInfoPanelReward = new ZoneInfoSuperReward(rndReward, CurrentLevel);
-                return superZone.zoneInfoSuperRewards.Find(r => r.CurrentLevel == CurrentLevel);
-            }
-        }
-*/

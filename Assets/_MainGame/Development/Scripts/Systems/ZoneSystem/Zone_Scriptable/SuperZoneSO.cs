@@ -6,9 +6,10 @@ namespace VertigoCase.Systems.ZoneSystem
     [CreateAssetMenu(fileName = "SuperZone", menuName = "Vertigo/WheelGame/ZoneSystem/SuperZone")]
     public class SuperZoneSO : ZoneBaseSO
     {
-        public override ZoneType ZoneType => ZoneType.Super;
+        public override ZoneType zoneType => ZoneType.Super;
 
-        [Header("Super Zone Settings")][Tooltip("Manuel aşağıda eklendiği şekilde mi seviyeler belirlensin? yoksa step bazlı mı?")]
+        [Header("Super Zone Settings")]
+        [Tooltip("Manuel aşağıda eklendiği şekilde mi seviyeler belirlensin? yoksa step bazlı mı?")]
         public bool useIntervalProgression = true;
         public List<ZoneInfoSuperReward> zoneInfoSuperRewards;
     }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace VertigoCase.Helpers.OtherHelpers
+namespace VertigoCase.Helpers.EditorHelpers
 {
     public class DestroyOnPlayHelper : MonoBehaviour
     {

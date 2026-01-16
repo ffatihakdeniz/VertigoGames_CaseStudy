@@ -20,8 +20,8 @@ namespace VertigoCase.Systems.ZoneSystem
             if (level < 0)
                 return ZoneType.None;
 
-            var superZone = _zoneDataList.Find(z => z.ZoneType == ZoneType.Super);
-            var safeZone = _zoneDataList.Find(z => z.ZoneType == ZoneType.Safe);
+            var superZone = GetZoneSOByZoneType(ZoneType.Super);
+            var safeZone = GetZoneSOByZoneType(ZoneType.Safe);
 
             if (superZone != null && superZone.triggerInterval > 0 && level % superZone.triggerInterval == 0)
                 return ZoneType.Super;
@@ -34,16 +34,13 @@ namespace VertigoCase.Systems.ZoneSystem
 
         public ZoneInfoSuperReward GetSuperZoneNextRewardByInterval(int currentLevel)
         {
-            var superZone = _zoneDataList.Find(z => z.ZoneType == ZoneType.Super) as SuperZoneSO;
+            var superZone = GetZoneSOByZoneType(ZoneType.Super) as SuperZoneSO;
             if (superZone == null)
                 throw new Exception("Super Zone SO eklenmemis");
 
             if (superZone.useIntervalProgression)
             {
                 int intervalIndex = IntervalIndexByLevel(superZone.triggerInterval, currentLevel);
-
-                Debug.Log("Interval Index: " + intervalIndex);
-
                 if (intervalIndex < superZone.zoneInfoSuperRewards.Count)
                     return superZone.zoneInfoSuperRewards[Mathf.Max(0, intervalIndex - 1)];
             }
@@ -62,12 +59,23 @@ namespace VertigoCase.Systems.ZoneSystem
 
         public int GetSafeZoneNextRewardByInterval(int currentLevel)
         {
-            var safeZone = _zoneDataList.Find(z => z.ZoneType == ZoneType.Safe) as SafeZoneSO;
+            var safeZone = GetZoneSOByZoneType(ZoneType.Safe) as SafeZoneSO;
+            var superZone = GetZoneSOByZoneType(ZoneType.Super) as SuperZoneSO;
             if (safeZone == null)
                 throw new Exception("Safe Zone SO eklenmemis");
 
             int intervalIndex = IntervalIndexByLevel(safeZone.triggerInterval, currentLevel);
-            return safeZone.triggerInterval * intervalIndex;
+            int _retValue = safeZone.triggerInterval * intervalIndex; // Safezone'un superzone ile cakisma durumunun engellenmesi
+            while (_retValue % superZone.triggerInterval == 0)
+            {
+                intervalIndex++;
+                _retValue = safeZone.triggerInterval * intervalIndex;
+            }
+            return _retValue;
+        }
+        public ZoneBaseSO GetZoneSOByZoneType(ZoneType zoneType)
+        {
+            return _zoneDataList.Find(z => z.zoneType == zoneType);
         }
     }
 }

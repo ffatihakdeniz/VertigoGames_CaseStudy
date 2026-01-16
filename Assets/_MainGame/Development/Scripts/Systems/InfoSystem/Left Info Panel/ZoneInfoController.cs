@@ -6,11 +6,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using VertigoCase.Systems.ZoneSystem;
 using Cysharp.Threading.Tasks;
-using System.Threading.Tasks;
+using VertigoCase.Runtime;
 using static VertigoCase.Helpers.Extensions.GeneralExtensions;
 
 
-namespace VertigoCase.Runtime
+namespace VertigoCase.Systems.InfoSystem
 {
     public class ZoneInfoController : MonoBehaviour, IGameInitializer
     {
@@ -30,7 +30,6 @@ namespace VertigoCase.Runtime
         void Start()//Test
         {
             OnChangedLevelHandler();
-
         }
         void OnChangedLevelHandler()
         {
@@ -44,7 +43,6 @@ namespace VertigoCase.Runtime
             }
             if (requiredSafeZoneLevel != currentSafeZoneLevel)
             {
-                print("Safe Zone Level Changed");
                 currentSafeZoneLevel = requiredSafeZoneLevel;
                 SafeZoneInfoPanelAnimation(currentSafeZoneLevel);
             }
@@ -66,6 +64,12 @@ namespace VertigoCase.Runtime
             await UniTask.Delay(600);
             safeZoneInfoPanelRect.DOShakeScale(0.25f, 0.15f, 10, 90, false);
         }
-
+        [ContextMenu("Zone Info Panel Test Button")]
+        public void TestZoneInfoPanel()
+        {
+            ZoneManager.Instance.IncreaseLevel();
+            OnChangedLevelHandler();
+            print("Current Level: " + ZoneManager.Instance.CurrentLevel);
+        }
     }
 }

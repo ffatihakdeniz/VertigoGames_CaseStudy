@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad176b7d392e54a66bf356e630d51a2f, type: 3}
   m_Name: SafeZone
   m_EditorClassIdentifier: 
+  slidePanelLevelPointColor: {r: 0, g: 1, b: 0.26666668, a: 1}
+  slidePanelCursorImage: {fileID: 0}
   triggerInterval: 3
   rewardValueMultiplier: 2

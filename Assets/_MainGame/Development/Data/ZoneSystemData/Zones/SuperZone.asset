@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3efa747b8a612426386c6071dc673540, type: 3}
   m_Name: SuperZone
   m_EditorClassIdentifier: 
-  rewardedData: []
+  slidePanelLevelPointColor: {r: 1, g: 0.7254902, b: 0, a: 1}
+  slidePanelCursorImage: {fileID: 0}
   triggerInterval: 5
   rewardValueMultiplier: 3
   useIntervalProgression: 1

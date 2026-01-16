@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLevel: -1
   zoneMultiplierIncreaseRate: 0.6
-  currentLevel: 0
+  startedLevel: 1
+  currentLevel: 1
   currentZoneIntervalCount: 0
   isFirstLaunch: 0
