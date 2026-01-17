@@ -12,7 +12,7 @@ using static VertigoCase.Helpers.Extensions.GeneralExtensions;
 
 namespace VertigoCase.Systems.InfoSystem
 {
-    public class ZoneInfoController : MonoBehaviour, IGameInitializer
+    public class ZoneInfoController : MonoBehaviour, IGameInitializer, IAutoBindable
     {
         [SerializeField] Image superZoneInfoSprite;
         [SerializeField] TextMeshProUGUI superZoneInfoText_value;

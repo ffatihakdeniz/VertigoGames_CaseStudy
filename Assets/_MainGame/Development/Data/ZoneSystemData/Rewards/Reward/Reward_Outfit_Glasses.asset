@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardType: 16
   rewardName: Aviator Glass
+  rewardID: 0
   zoneType: 0
   icon: {fileID: 21300000, guid: 322d5b11b935c418ca584424b11fdba9, type: 3}
   baseAmount: 0
-  scale: 0
-  scaleMultiplier: 1.03
+  scaleMultiplier: 1.5

@@ -13,7 +13,7 @@ namespace VertigoCase.Runtime
 
 
         [Header("Progression")]
-        public int currentLevel = 0;
+        public int currentLevel = 1;
         public int currentZoneIntervalCount = 0;
 
 

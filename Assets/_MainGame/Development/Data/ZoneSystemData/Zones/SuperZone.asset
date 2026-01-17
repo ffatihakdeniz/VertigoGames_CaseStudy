@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SuperZone
   m_EditorClassIdentifier: 
   slidePanelLevelPointColor: {r: 1, g: 0.7254902, b: 0, a: 1}
-  slidePanelCursorImage: {fileID: 0}
+  slidePanelLevelTextCursorColor: {r: 1, g: 0.84313726, b: 0, a: 1}
   triggerInterval: 5
   rewardValueMultiplier: 3
   useIntervalProgression: 1

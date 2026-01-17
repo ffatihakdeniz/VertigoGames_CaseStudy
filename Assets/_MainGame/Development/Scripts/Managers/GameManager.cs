@@ -8,7 +8,7 @@ namespace VertigoCase.Runtime
         [SerializeField] private GameDataSO gameData;
         protected override void Awake()
         {
-            gameData.currentLevel = 0;
+            gameData.currentLevel = 1;
             Initializer();
         }
         void Initializer()

@@ -9,6 +9,7 @@ namespace VertigoCase.Systems.ZoneSystem
 
         [Header("Slide Info Panel Settings")]
         public Color slidePanelLevelPointColor = Color.white;
+        public Color slidePanelLevelTextCursorColor = Color.black;
         //public Sprite slidePanelCursorImage;
         //public List<RewardSO> rewardedData = new List<RewardSO>();
 

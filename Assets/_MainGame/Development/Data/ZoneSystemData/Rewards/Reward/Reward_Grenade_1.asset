@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardType: 12
   rewardName: Grenade M26
+  rewardID: 0
   zoneType: 0
   icon: {fileID: 21300000, guid: e23bd9c236c0d45db9d23905635228a0, type: 3}
   baseAmount: 1
-  scale: 0
-  scaleMultiplier: 1.03
+  scaleMultiplier: 1

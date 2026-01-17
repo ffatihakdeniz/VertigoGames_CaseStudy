@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardType: 11
   rewardName: Silver Chest
+  rewardID: 0
   zoneType: 0
   icon: {fileID: 21300000, guid: 905cfb1456e0344b981271939141a634, type: 3}
   baseAmount: 0
-  scale: 0
-  scaleMultiplier: 1.03
+  scaleMultiplier: 1

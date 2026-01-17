@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SafeZone
   m_EditorClassIdentifier: 
   slidePanelLevelPointColor: {r: 0, g: 1, b: 0.26666668, a: 1}
-  slidePanelCursorImage: {fileID: 0}
+  slidePanelLevelTextCursorColor: {r: 0.023529412, g: 1, b: 0, a: 1}
   triggerInterval: 3
   rewardValueMultiplier: 2

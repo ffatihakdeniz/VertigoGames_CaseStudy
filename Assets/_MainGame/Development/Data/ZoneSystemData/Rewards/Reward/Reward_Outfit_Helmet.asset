@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardType: 16
   rewardName: Pumpkin Helmet
+  rewardID: 0
   zoneType: 0
-  icon: {fileID: 21300000, guid: bf8b68fc4c3634ccfb241ee159a75f5d, type: 3}
+  icon: {fileID: 21300000, guid: 7755f7fc0320f4e1c88fe25781a5bdf0, type: 3}
   baseAmount: 0
-  scale: 0
-  scaleMultiplier: 1.03
+  scaleMultiplier: 1.1

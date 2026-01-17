@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using VertigoCase.Runtime;
+using VertigoCase.Systems.CardSystem;
 using Zenject;
 
 public class AutoBindInstaller : MonoInstaller
@@ -8,28 +10,7 @@ public class AutoBindInstaller : MonoInstaller
 
 	public override void InstallBindings()
 	{
-		foreach (var go in targets)
-		{
-			if (go == null)
-				continue;
-
-			foreach (var component in go.GetComponents<MonoBehaviour>())
-			{
-				if (component is not IAutoBindable)
-					continue;
-
-				foreach (var iface in component.GetType().GetInterfaces())
-				{
-					if (iface == typeof(IAutoBindable))
-						continue;
-                    if (Container.HasBinding(iface))//TODO
-	                    continue;
-
-					Container.Bind(iface)
-						.FromInstance(component)
-						.AsSingle();
-				}
-			}
-		}
+		Container.Bind<RewardParticleController>().FromComponentInHierarchy().AsSingle();
+		Container.Bind<WheelController>().FromComponentInHierarchy().AsSingle();
 	}
 }
