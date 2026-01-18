@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardType: 17
   rewardName: Sniper Points
+  rewardID: 57
   zoneType: 0
   icon: {fileID: 21300000, guid: 70cfcb3b5d8ab42f9b9b9fee984f33e8, type: 3}
-  baseAmount: 0
-  scale: 0
-  scaleMultiplier: 1.03
+  baseAmount: 5
+  scaleMultiplier: 0.7

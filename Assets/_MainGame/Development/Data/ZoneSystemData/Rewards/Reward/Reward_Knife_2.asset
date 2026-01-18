@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardType: 15
   rewardName: Bayonet Summer Vice
-  rewardID: 0
+  rewardID: 13
   zoneType: 0
   icon: {fileID: 21300000, guid: bab4b4a75411a4be987ff77b943d16d5, type: 3}
-  baseAmount: 0
+  baseAmount: 1
   scaleMultiplier: 1

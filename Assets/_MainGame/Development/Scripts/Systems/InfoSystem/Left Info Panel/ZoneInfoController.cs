@@ -26,11 +26,22 @@ namespace VertigoCase.Systems.InfoSystem
 
         public void Initialize()
         {
+
         }
         void Start()//Test
         {
             OnChangedLevelHandler();
         }
+        void OnEnable()
+        {
+            EventBus.Subscribe<ChangedLevelEvent>(OnChangedLevelHandler);
+        }
+        void OnDisable()
+        {
+            EventBus.Unsubscribe<ChangedLevelEvent>(OnChangedLevelHandler);
+        }
+
+
         void OnChangedLevelHandler()
         {
             if (requiredSuperZoneLevel != currentSuperZoneLevel)

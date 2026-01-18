@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardType: 12
   rewardName: Molotov
-  rewardID: 0
+  rewardID: 9
   zoneType: 0
   icon: {fileID: 21300000, guid: 45193a48bf55541fc9905e4eb73c0476, type: 3}
   baseAmount: 1

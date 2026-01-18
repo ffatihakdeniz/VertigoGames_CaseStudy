@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardType: 30
   rewardName: Shotgun
+  rewardID: 105
   zoneType: 2
   icon: {fileID: 21300000, guid: d69a11d5ced1147d58af7c7edd8fac40, type: 3}
-  baseAmount: 0
-  scale: 0
+  baseAmount: 1
   scaleMultiplier: 1.03

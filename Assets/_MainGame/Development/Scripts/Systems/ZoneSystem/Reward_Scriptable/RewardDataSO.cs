@@ -4,7 +4,7 @@ namespace VertigoCase.Systems.ZoneSystem
 {
 
     [CreateAssetMenu(fileName = "Reward_", menuName = "Vertigo/WheelGame/ZoneSystem/Reward")]
-    public class RewardSO : ScriptableObject
+    public class RewardDataSO : ScriptableObject
     {
         [Header("Identity")]
         [Tooltip("Genel Kimlik Bilgileri")]
@@ -32,6 +32,11 @@ namespace VertigoCase.Systems.ZoneSystem
         public int CalculateRewardAmount(float multiplier)
         {
             return Mathf.RoundToInt(baseAmount + baseAmount * multiplier);
+        }
+        public int CalculateRewardAmountForZone(float multiplier, float zoneMultiplier)
+        {
+            float zoneAmount = baseAmount * zoneMultiplier;
+            return Mathf.RoundToInt(zoneAmount + zoneAmount * multiplier);
         }
         public Vector2 CalculateRectUIIconSize(Vector2 currentSize)
         {

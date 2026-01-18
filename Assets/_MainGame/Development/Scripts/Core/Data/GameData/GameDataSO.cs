@@ -8,7 +8,7 @@ namespace VertigoCase.Runtime.Data
         [Header("Settings")]
         [Tooltip("-1 Sonsuz Seviye")]
         public int maxLevel = -1;
-        public float zoneMultiplierIncreaseRate = .6f;
+        public float zoneMultiplierIncreaseRate = .2f;
         public int startedLevel = 1;
 
 

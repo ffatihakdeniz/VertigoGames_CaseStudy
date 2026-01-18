@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardType: 17
   rewardName: Submachine Points
+  rewardID: 58
   zoneType: 0
   icon: {fileID: 21300000, guid: ddaee77fc0afe4325999943c700a2ddd, type: 3}
-  baseAmount: 0
-  scale: 0
-  scaleMultiplier: 1.03
+  baseAmount: 5
+  scaleMultiplier: 0.7

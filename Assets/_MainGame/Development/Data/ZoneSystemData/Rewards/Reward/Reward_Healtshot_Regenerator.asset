@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardType: 14
   rewardName: Regenerator
-  rewardID: 0
+  rewardID: 11
   zoneType: 0
   icon: {fileID: 21300000, guid: bb37e230ff67c491789d679820e2e951, type: 3}
-  baseAmount: 0
+  baseAmount: 1
   scaleMultiplier: 1

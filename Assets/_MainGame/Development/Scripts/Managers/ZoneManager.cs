@@ -8,9 +8,38 @@ namespace VertigoCase.Systems.ZoneSystem
 {
     public class ZoneManager : MonoSingleton<ZoneManager>, IGameDataConsumer
     {
+        [Header("Zone Data")]
         [SerializeField] private List<ZoneBaseSO> zoneDataList;
+        [Header("Reward Data")]
+        [SerializeField] private List<RewardDataSO> rewardDataList;
         GameDataSO gameData;
-        private ZoneRewardResolver _rewardResolver;
+        private ZoneResolver _zoneResolver;
+        private RewardResolver _rewardResolver;
+
+        public void Initialize(GameDataSO gameData)
+        {
+            this.gameData = gameData;
+            _zoneResolver = new ZoneResolver(zoneDataList);
+            _rewardResolver = new RewardResolver(rewardDataList);
+        }
+        void OnEnable()
+        {
+            EventBus.Subscribe<ChangedLevelEvent>(OnNewLevelStartHandler);
+        }
+        void OnDisable()
+        {
+            EventBus.Subscribe<ChangedLevelEvent>(OnNewLevelStartHandler);
+        }
+        void OnNewLevelStartHandler()
+        {
+            //TODO
+        }
+
+        public List<RewardedItemInfo> GetRewardsByZoneType()
+        {
+            //print("Zone Type: " + GetZoneTypeByLevel() + " Level: " + CurrentLevel + " Multiplier: " + CurrentLevelRewardMultiplier);
+            return _rewardResolver.CreateRewardedItemList(CurrentLevelRewardMultiplier, GetZoneTypeByLevel());
+        }
 
         public int StartedLevel => gameData.startedLevel;
         public int IntervalLevelBySuperZone
@@ -39,12 +68,12 @@ namespace VertigoCase.Systems.ZoneSystem
             get => gameData.currentLevel;
             private set => gameData.currentLevel = Mathf.Max(0, value);
         }
-        public ZoneType CurrentZoneType => _rewardResolver.GetZoneByLevel(CurrentLevel);
+        public ZoneType CurrentZoneType => _zoneResolver.GetZoneByLevel(CurrentLevel);
 
         public int CurrentZoneGeneralIntervalCount
         {
             get => gameData.currentZoneIntervalCount;
-            private set => gameData.currentZoneIntervalCount = Mathf.Max(0, value);
+            private set => gameData.currentZoneIntervalCount = Mathf.Max(1, value);
         }
         public void IncreaseZoneGeneralIntervalCount()
         {
@@ -55,31 +84,18 @@ namespace VertigoCase.Systems.ZoneSystem
             CurrentLevel++;
         }
 
-        public float CurrentLevelRewardMultiplier
+        public float CurrentLevelRewardMultiplier //Her safe-super zonedan gecildiginde odul artis orani
         {
             get
             {
-                float multiplier = zoneDataList.Find(z => z.zoneType == GetZoneTypeByLevel()).rewardValueMultiplier;
-                return Mathf.Pow(1f + gameData.zoneMultiplierIncreaseRate, CurrentZoneGeneralIntervalCount) * multiplier;
+                float zoneMultiplier = zoneDataList.Find(z => z.zoneType == GetZoneTypeByLevel()).rewardValueMultiplier;
+                return Mathf.Pow(1f + gameData.zoneMultiplierIncreaseRate, CurrentZoneGeneralIntervalCount) * zoneMultiplier;
             }
-        }
-
-
-
-        public void Initialize(GameDataSO gameData)
-        {
-            this.gameData = gameData;
-            _rewardResolver = new ZoneRewardResolver(zoneDataList);
-
-        }
-        void OnChangedZoneLevelHandler()
-        {
-            //TODO
         }
 
         public ZoneType GetZoneTypeByLevel() // Mevcut seviye hangi zone grubun ait
         {
-            return _rewardResolver.GetZoneByLevel(CurrentLevel);
+            return _zoneResolver.GetZoneByLevel(CurrentLevel);
         }
         public ZoneBaseSO GetZoneByLevel() // Mevcut seviye hangi zone grubun ait
         {
@@ -87,11 +103,11 @@ namespace VertigoCase.Systems.ZoneSystem
         }
         public ZoneInfoSuperReward GetSuperZoneNextRewardByInterval()// Siradaki super bolge seviyesi ve odul gorseli
         {
-            return _rewardResolver.GetSuperZoneNextRewardByInterval(CurrentLevel);
+            return _zoneResolver.GetSuperZoneNextRewardByInterval(CurrentLevel);
         }
         public int GetSafeZoneNextRewardByInterval() // Siradaki guvenli bolge seviyesi
         {
-            return _rewardResolver.GetSafeZoneNextRewardByInterval(CurrentLevel);
+            return _zoneResolver.GetSafeZoneNextRewardByInterval(CurrentLevel);
         }
         public ZoneBaseSO GetZoneSOByZoneType(ZoneType zoneType)
         {

@@ -1,13 +1,17 @@
 using UnityEngine;
 using Patterns.Singleton;
 using VertigoCase.Runtime.Data;
+using UnityEngine.UI;
+using Cysharp.Threading.Tasks;
 
 namespace VertigoCase.Runtime
 {
-    public class GameManager : MonoSingleton<GameManager>
+    public class GameManager : MonoBehaviour, IAutoBindable
     {
         [SerializeField] private GameDataSO gameData;
-        protected override void Awake()
+        public Button exitButton;
+
+        void Awake()
         {
             gameData.currentLevel = 1;
             Initializer();
@@ -22,6 +26,12 @@ namespace VertigoCase.Runtime
                 else if (obj is IGameDataConsumer dataConsumer)
                     dataConsumer.Initialize(gameData);
             }
+        }
+        async void Start()
+        {
+            exitButton.onClick.AddListener(() => Application.Quit());//zaman kalırsa reset sistemi icin ugrasicam//islevsiz kalmasin diye direkt quit attiriyorum :(
+            await UniTask.Yield();
+            EventBus.Fire<ChangedLevelEvent>();
         }
     }
 

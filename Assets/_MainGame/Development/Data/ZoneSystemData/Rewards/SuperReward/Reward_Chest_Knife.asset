@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardType: 30
   rewardName: Knife MLE
+  rewardID: 101
   zoneType: 2
   icon: {fileID: 21300000, guid: 1e724cb442fa842199059d8319ebeca0, type: 3}
-  baseAmount: 0
-  scale: 0
+  baseAmount: 1
   scaleMultiplier: 1.03

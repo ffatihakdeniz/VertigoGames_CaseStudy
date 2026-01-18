@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using System.Collections.Generic;
 
 namespace VertigoCase.Helpers.Extensions
 {
@@ -142,5 +143,34 @@ namespace VertigoCase.Helpers.Extensions
         }
 
 
+    }
+    public static class ListExtensions
+    {
+        public static void Shuffle<T>(this IList<T> list)
+        {
+            if (list == null || list.Count <= 1)
+                return;
+
+            for (int i = list.Count - 1; i > 0; i--)
+            {
+                int j = Random.Range(0, i + 1);
+                (list[i], list[j]) = (list[j], list[i]);
+            }
+        }
+        public static List<T> Shuffled<T>(this IList<T> source)
+        {
+            if (source == null || source.Count <= 1)
+                return source == null ? null : new List<T>(source);
+
+            List<T> result = new List<T>(source);
+
+            for (int i = result.Count - 1; i > 0; i--)
+            {
+                int j = Random.Range(0, i + 1);
+                (result[i], result[j]) = (result[j], result[i]);
+            }
+
+            return result;
+        }
     }
 }

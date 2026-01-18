@@ -2,8 +2,6 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using static VertigoCase.Helpers.Extensions.MathExtensions;
-using UnityEngine.Animations;
-using UnityEngine.Rendering.Universal.Internal;
 
 namespace VertigoCase.Systems.WheelSystem
 {
@@ -24,13 +22,6 @@ namespace VertigoCase.Systems.WheelSystem
             _settings = settings;
             sliceCount = settings.sliceCount;
             this.wheel = wheel;
-        }
-
-        public void Kill()
-        {
-            if (_tween != null && _tween.IsActive())
-                _tween.Kill();
-            _tween = null;
         }
 
         /// <summary>
@@ -77,26 +68,28 @@ namespace VertigoCase.Systems.WheelSystem
             var tcs = new UniTaskCompletionSource<int>();
             // finalZ = (targetIndex * sliceAngle) * _settings.minRotations;
 
-            _tween = wheel
-                .DORotate(new Vector3(0f, 0f, finalZ), _settings.spinDuration, _settings.rotateMode)
-                .SetEase(_settings.ease)
+            _tween = wheel.DORotate(new Vector3(0f, 0f, finalZ), _settings.spinDuration, _settings.rotateMode).SetEase(_settings.ease)
                 .OnComplete(() =>
                 {
                     _tween = null;
                     float axisZ = Mathf.RoundToInt(wheel.eulerAngles.z);
                     if (axisZ < 0) axisZ += 360f;
                     int retValue = Mathf.RoundToInt(axisZ / sliceAngle);
-                    Debug.Log($"retValue: {retValue} | axisZ: {axisZ} | sliceAngle: {sliceAngle} | targetIndex: {targetIndex}");
-
+                    //Debug.Log($"retValue: {retValue} | axisZ: {axisZ} | sliceAngle: {sliceAngle} | targetIndex: {targetIndex}");
                     tcs.TrySetResult(retValue);
-                })
-                .OnKill(() =>
+                }).OnKill(() =>
                 {
                     if (!tcs.Task.Status.IsCompleted())
                         tcs.TrySetResult(-1);
                 });
 
             return tcs.Task;
+        }
+        public void Kill()
+        {
+            if (_tween != null && _tween.IsActive())
+                _tween.Kill();
+            _tween = null;
         }
 
 

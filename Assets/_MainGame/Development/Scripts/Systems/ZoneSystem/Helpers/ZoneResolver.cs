@@ -6,11 +6,11 @@ using static VertigoCase.Helpers.Extensions.MathExtensions;
 
 namespace VertigoCase.Systems.ZoneSystem
 {
-    public class ZoneRewardResolver
+    public class ZoneResolver
     {
         private readonly List<ZoneBaseSO> _zoneDataList;
 
-        public ZoneRewardResolver(List<ZoneBaseSO> zoneDataList)
+        public ZoneResolver(List<ZoneBaseSO> zoneDataList)
         {
             _zoneDataList = zoneDataList;
         }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardType: 12
   rewardName: Grenade M67
-  rewardID: 0
+  rewardID: 8
   zoneType: 0
   icon: {fileID: 21300000, guid: fc82a84a1b4684b4a862411af299b74b, type: 3}
   baseAmount: 1

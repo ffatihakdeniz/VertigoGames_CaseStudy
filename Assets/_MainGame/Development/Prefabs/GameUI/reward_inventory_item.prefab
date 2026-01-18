@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1470692711911437464}
   - component: {fileID: 1470692711911437466}
   m_Layer: 5
-  m_Name: reward_listbox_item
+  m_Name: reward_inventory_item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

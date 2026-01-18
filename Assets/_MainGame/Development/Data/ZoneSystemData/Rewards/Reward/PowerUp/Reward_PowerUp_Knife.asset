@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardType: 17
   rewardName: Knife Points
+  rewardID: 52
   zoneType: 0
   icon: {fileID: 21300000, guid: ed8d02d2614e54f0e95bb916a1579549, type: 3}
-  baseAmount: 0
-  scale: 0
-  scaleMultiplier: 1.03
+  baseAmount: 5
+  scaleMultiplier: 0.7

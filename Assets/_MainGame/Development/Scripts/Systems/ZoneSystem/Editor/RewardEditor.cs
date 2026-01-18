@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace VertigoCase.Systems.ZoneSystem
 {
-    [CustomEditor(typeof(RewardSO))]
+    [CustomEditor(typeof(RewardDataSO))]
     public class RewardSOEditor : Editor
     {
-        private RewardSO _reward;
+        private RewardDataSO _reward;
 
         // Serialized props
         private SerializedProperty _rewardType;
@@ -29,7 +29,7 @@ namespace VertigoCase.Systems.ZoneSystem
 
         private void OnEnable()
         {
-            _reward = (RewardSO)target;
+            _reward = (RewardDataSO)target;
 
             _rewardType = serializedObject.FindProperty("rewardType");
             _rewardName = serializedObject.FindProperty("rewardName");

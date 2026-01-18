@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardType: 11
   rewardName: Small Chest
-  rewardID: 0
+  rewardID: 5
   zoneType: 0
   icon: {fileID: 21300000, guid: 012cef5fbccb342bd80570ef57e68c7b, type: 3}
-  baseAmount: 0
+  baseAmount: 1
   scaleMultiplier: 1

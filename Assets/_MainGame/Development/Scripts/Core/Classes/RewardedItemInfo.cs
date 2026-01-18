@@ -6,7 +6,7 @@ namespace VertigoCase.Runtime
     [System.Serializable]
     public class RewardedItemInfo
     {
-        [SerializeField] private RewardSO RewardData;
+        [SerializeField] private RewardDataSO RewardData;
         [SerializeField] public int RewardAmount;
         public readonly Sprite RewardIcon;
         public readonly int RewardID;
@@ -15,7 +15,7 @@ namespace VertigoCase.Runtime
         public readonly float ScaleMultiplierIcon;
 
 
-        public RewardedItemInfo(RewardSO rewardSO, int rewardAmount)
+        public RewardedItemInfo(RewardDataSO rewardSO, int rewardAmount)
         {
             RewardData = rewardSO;
             RewardAmount = rewardAmount;

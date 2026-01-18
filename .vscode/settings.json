@@ -1,19 +1,22 @@
 {
     "files.exclude": {
-        "...": true
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.gitmodules": true,
+        "**/*.meta": true,
+        "Library/": true,
+        "Temp/": true,
+        "Obj/": true,
+        "Build/": true,
+        "build/": true,
+        "ProjectSettings/": true
     },
-
     "dotnet.defaultSolution": "VertigoGames_CaseStudy.slnx",
-
     "editor.formatOnType": true,
     "editor.formatOnSave": true,
-
     "[csharp]": {
         "editor.defaultFormatter": "ms-dotnettools.csharp",
         "editor.formatOnType": true
     },
-
     "dotnet.server.useOmnisharp": false
 }
-
-

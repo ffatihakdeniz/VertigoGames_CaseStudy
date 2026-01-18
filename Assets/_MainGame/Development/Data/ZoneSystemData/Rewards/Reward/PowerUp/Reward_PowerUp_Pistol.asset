@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardType: 17
   rewardName: Pistol Points
+  rewardID: 53
   zoneType: 0
   icon: {fileID: 21300000, guid: 73d8740d668eb4c789ddb165c33e2f66, type: 3}
-  baseAmount: 0
-  scale: 0
-  scaleMultiplier: 1.03
+  baseAmount: 5
+  scaleMultiplier: 0.7

@@ -4,7 +4,7 @@ namespace VertigoCase.Systems.ZoneSystem
     [System.Serializable]
     public class ZoneInfoSuperReward
     {
-        public ZoneInfoSuperReward(RewardSO reward, int level)
+        public ZoneInfoSuperReward(RewardDataSO reward, int level)
         {
             this.reward = reward;
             this.level = level;
@@ -13,7 +13,7 @@ namespace VertigoCase.Systems.ZoneSystem
         {
 
         }
-        public RewardSO reward;
+        public RewardDataSO reward;
         public int level;
     }
 }

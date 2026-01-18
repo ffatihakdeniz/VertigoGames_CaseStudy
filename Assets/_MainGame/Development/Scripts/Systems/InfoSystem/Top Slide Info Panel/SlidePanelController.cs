@@ -2,10 +2,11 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 using VertigoCase.Systems.ZoneSystem;
+using VertigoCase.Runtime;
 
 namespace VertigoCase.Systems.InfoSystem
 {
-    public class SlidePanelController : MonoBehaviour, IAutoBindable
+    public class SlidePanelController : MonoBehaviour//, IGameInitializer
     {
         [Header("Layout Settings")]
         public int middleChildIndex = 8;
@@ -41,10 +42,17 @@ namespace VertigoCase.Systems.InfoSystem
             _levelStrip.Initialize(startedLevel);
             _cursorAnimator.SetInitialLeftText(currentLevel);
 
-            GeneralSlideAnimation();
+        }
+        void OnEnable()
+        {
+            EventBus.Subscribe<ChangedLevelEvent>(OnChangedLevelHandler);
+        }
+        void OnDisable()
+        {
+            EventBus.Unsubscribe<ChangedLevelEvent>(OnChangedLevelHandler);
         }
 
-        public async void GeneralSlideAnimation()
+        public async void OnChangedLevelHandler()
         {
             await _levelStrip.SlideNextAsync();
 

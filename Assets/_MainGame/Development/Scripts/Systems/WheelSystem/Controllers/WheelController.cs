@@ -2,16 +2,18 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
-using VertigoCase.Data.Enums;
 using VertigoCase.Runtime;
 using VertigoCase.Systems.ZoneSystem;
+using VertigoCase.Systems.PanelSystem;
 using Cysharp.Threading.Tasks;
+using Zenject;
 
 namespace VertigoCase.Systems.WheelSystem
 {
     public class WheelController : MonoBehaviour, IGameInitializer
     {
         [SerializeField] private SpinSettingsDataSO spinSettingsData;
+        [Inject] GameManager gameManager;
 
         private Image wheelImage, indicatorImage;
         private RectTransform wheelRootRect;
@@ -19,38 +21,67 @@ namespace VertigoCase.Systems.WheelSystem
 
         private ZoneType currentWheelVisualType;
         private WheelSpinnerService _wheelSpinnerService;
+        private WheelInventoryService _wheelInventoryService;
+        List<RewardedItemInfo> currentRewards;
 
         public void Initialize()
         {
-            SetWheelType(ZoneType.Normal);
+            ChangeWheelVisual(ZoneType.Normal);
+            currentRewards = new List<RewardedItemInfo>();
             _wheelSpinnerService = new WheelSpinnerService(spinSettingsData, wheelImage.transform);
+            _wheelInventoryService = new WheelInventoryService(wheelImage.transform);
+            for (int i = 0; i < wheelImage.transform.childCount; i++)
+                wheelImage.transform.GetChild(i).localScale = Vector3.zero;
+        }
+        void Start()
+        {
+            currentRewards = ZoneManager.Instance.GetRewardsByZoneType();
+            _wheelInventoryService.AddRewardableItems(currentRewards).Forget();
         }
         void OnEnable()
         {
             spinButton.onClick.AddListener(OnSpinButtonClick);
+            EventBus.Subscribe<ChangedLevelEvent>(OnChangedLevelHandler);
+            EventBus.Subscribe<PrepareNewLevelEvent>(OnPrepareNewLevel);
         }
         void OnDisable()
         {
             spinButton.onClick.RemoveListener(OnSpinButtonClick);
+            EventBus.Unsubscribe<ChangedLevelEvent>(OnChangedLevelHandler);
+            EventBus.Unsubscribe<PrepareNewLevelEvent>(OnPrepareNewLevel);
+        }
+        void OnChangedLevelHandler() => SetupWheelForNewLevel();
+        async void OnPrepareNewLevel()
+        {
+            ZoneManager.Instance.IncreaseLevel();
+            await _wheelInventoryService.DeleteRewardableItems();
+            SetButtonsInteractable(true);
+            EventBus.Fire<ChangedLevelEvent>();
         }
 
         async void OnSpinButtonClick()
         {
+            EventBus.Fire<SpinStartedEvent>();
+            SetButtonsInteractable(false);
             int index = await _wheelSpinnerService.SpinRandomAsync();
             if (index == -1) throw new System.Exception("Spin error.");
-            print("Index: " + index);
+            transform.DOShakeScale(0.3f, 0.15f, 10, 90, false);
+            var reward = currentRewards[index];
+            if (reward.RewardType == RewardType.Deadly)
+                PanelPopUpManager.Instance.OpenBombPanel();
+            else
+                EventBus.Fire(new SpinEndedEvent(reward));
         }
-        void InitializeWheelNewLevel()
+        public async void SetupWheelForNewLevel()
         {
             var zoneType = ZoneManager.Instance.CurrentZoneType;
-            SetWheelType(zoneType);
+            ChangeWheelVisual(zoneType);
+            wheelImage.transform.rotation = Quaternion.identity;
+            currentRewards = ZoneManager.Instance.GetRewardsByZoneType();
+            await _wheelInventoryService.AddRewardableItems(currentRewards);
         }
 
-
-
-
-
-        public void SetWheelType(ZoneType targetType)
+        public void ChangeWheelVisual(ZoneType targetType)
         {
             if (currentWheelVisualType == targetType)
                 return;
@@ -69,6 +100,13 @@ namespace VertigoCase.Systems.WheelSystem
             wheelRootRect.DOShakeScale(0.5f, 0.15f, 10, 90, false);
             indicatorImage.transform.DOShakeScale(0.2f, 0.15f, 10, 90, false).SetDelay(0.5f);
         }
+        void SetButtonsInteractable(bool value)
+        {
+            spinButton.interactable = value;
+            gameManager.exitButton.interactable = value;
+        }
+        [ContextMenu("Test Setup Wheel")] private void TestSetupWheel() => SetupWheelForNewLevel();
+        [ContextMenu("Test Delete Rewards")] private void TestDeleteRewards() => _wheelInventoryService.DeleteRewardableItems().Forget();
 
         /// <summary>
         /// Burada Validate kullanmak istedim. pek tercihim degil ama casede istediginiz icin kullanabildigimi gostermek maksadiyla :)
@@ -96,9 +134,9 @@ namespace VertigoCase.Systems.WheelSystem
             if (spinSettingsData == null)
                 Debug.LogWarning("SpinSettingsData not found");
         }
-        [ContextMenu("Set Bronze Wheel")] private void SetBronze() => SetWheelType(ZoneType.Normal);
-        [ContextMenu("Set Silver Wheel")] private void SetSilver() => SetWheelType(ZoneType.Safe);
-        [ContextMenu("Set Golden Wheel")] private void SetGolden() => SetWheelType(ZoneType.Super);
+        [ContextMenu("Set Bronze Wheel")] private void SetBronze() => ChangeWheelVisual(ZoneType.Normal);
+        [ContextMenu("Set Silver Wheel")] private void SetSilver() => ChangeWheelVisual(ZoneType.Safe);
+        [ContextMenu("Set Golden Wheel")] private void SetGolden() => ChangeWheelVisual(ZoneType.Super);
 
 #endif
     }

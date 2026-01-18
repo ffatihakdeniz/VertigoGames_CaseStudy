@@ -10,15 +10,17 @@ using DG.Tweening;
 using static VertigoCase.Helpers.Extensions.ImageExtensions;
 using VertigoCase.Systems.ZoneSystem;
 using VertigoCase.Systems.WheelSystem;
+using VertigoCase.Systems.InventorySystem;
 
 namespace VertigoCase.Systems.CardSystem
 {
-    public class RewardedCardController : MonoBehaviour, IGameInitializer, IAutoBindable
+    public class CardSystemController : MonoBehaviour, IGameInitializer, IAutoBindable
     {
         [Header("References")]
         [SerializeField] TextMeshProUGUI rewardCountText;
         [SerializeField] TextMeshProUGUI rewardNameText;
         [SerializeField] Image rewardIcon;
+        [Inject] InventoryController inventoryController;
 
         [Header("Animation Settings")]
         [SerializeField] float animationDuration = 2f;
@@ -27,7 +29,7 @@ namespace VertigoCase.Systems.CardSystem
         Vector2 cardStartPosition;
 
         [Header("Test")]
-        [SerializeField] RewardSO rewardSO;
+        [SerializeField] RewardDataSO rewardSO;
         internal RewardedItemInfo rewardedItemInfo;
         Transform cardTransform;
         [Inject] RewardParticleController particleController;
@@ -42,12 +44,21 @@ namespace VertigoCase.Systems.CardSystem
             cardTransform.localPosition = cardStartPosition;
             cardTransform.gameObject.SetActive(false);
         }
+        void OnEnable()
+        {
+            EventBus.Subscribe<SpinEndedEvent>(StartCardAnimation);
+        }
+        void OnDisable()
+        {
+            EventBus.Unsubscribe<SpinEndedEvent>(StartCardAnimation);
+        }
 
         [ContextMenu("Start Card Animation Test")]
-        public void StartCardAnimation()
+        public void StartCardAnimation(SpinEndedEvent e)
         {
             cardTransform.localScale = Vector3.zero;
-            rewardedItemInfo = rewardItemInfoListTest[Random.Range(0, rewardItemInfoListTest.Count)];//Test
+            //rewardedItemInfo = rewardItemInfoListTest[Random.Range(0, rewardItemInfoListTest.Count)];//Test
+            rewardedItemInfo = e.RewardInfo;
             cardTransform.gameObject.SetActive(true);
             rewardCountText.text = "x " + rewardedItemInfo.RewardAmount.ToString();
             rewardNameText.text = rewardedItemInfo.RewardName;
@@ -68,7 +79,7 @@ namespace VertigoCase.Systems.CardSystem
             cardTransform.DOPunchScale(new Vector3(.2f, .2f, 1), 0.2f, 3, 1);
             await UniTask.Delay(1000);
 
-            particleController.CreateParticle(rewardedItemInfo, rewardedItemPrefab.TestProcessItem(rewardedItemInfo));//test todo
+            particleController.CreateParticle(rewardedItemInfo, inventoryController.ProcessItem(rewardedItemInfo));//test todo
             await UniTask.Delay((int)((cardDeactiveDuration - 2) * 1000));
 
             cardTransform.DOLocalMove(cardStartPosition, animationDuration / 2);
@@ -76,6 +87,8 @@ namespace VertigoCase.Systems.CardSystem
 
 
             wheelController.GetComponent<CanvasGroup>().DOFade(1, animationDuration);
+            await UniTask.Delay(500);
+            EventBus.Fire<PrepareNewLevelEvent>();
         }
         void CompletedAnimation()
         {
@@ -84,9 +97,8 @@ namespace VertigoCase.Systems.CardSystem
         }
 
         //TESTT
-        public List<RewardSO> rewardList;
+        /*public List<RewardDataSO> rewardList;
         List<RewardedItemInfo> rewardItemInfoListTest = new();
-        public InventoryController rewardedItemPrefab;
 
         void Start()
         {
@@ -94,7 +106,7 @@ namespace VertigoCase.Systems.CardSystem
             {
                 rewardItemInfoListTest.Add(new RewardedItemInfo(rewardList[i], Random.Range(1, 100)));
             }
-        }
+        }*/
 
     }
 

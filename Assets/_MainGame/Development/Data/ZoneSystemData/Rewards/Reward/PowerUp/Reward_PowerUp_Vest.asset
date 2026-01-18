@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardType: 17
   rewardName: West Points
+  rewardID: 59
   zoneType: 0
   icon: {fileID: 21300000, guid: 29977b0030a1241ee88562e2a16f8ccd, type: 3}
-  baseAmount: 0
-  scale: 0
-  scaleMultiplier: 1.03
+  baseAmount: 5
+  scaleMultiplier: 0.7

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardType: 30
   rewardName: Rifle SMG
+  rewardID: 103
   zoneType: 2
   icon: {fileID: 21300000, guid: e8b9c2b6fa2de4317b8af3d7dc1a5440, type: 3}
-  baseAmount: 0
-  scale: 0
+  baseAmount: 1
   scaleMultiplier: 1.03
