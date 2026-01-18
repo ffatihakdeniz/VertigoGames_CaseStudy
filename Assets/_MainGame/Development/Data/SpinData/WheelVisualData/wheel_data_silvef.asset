@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: wheel_data_silvef
   m_EditorClassIdentifier: 
   wheelType: 1
+  zoneType: 2
   wheelImage: {fileID: 21300000, guid: fb2a9119e35454018baa41074d4a27e8, type: 3}
   indicatorImage: {fileID: 21300000, guid: 7e0bc2c8a90dc47d5b8754a9a106948f, type: 3}

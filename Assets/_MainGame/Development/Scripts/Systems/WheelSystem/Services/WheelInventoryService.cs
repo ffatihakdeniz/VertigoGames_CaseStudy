@@ -31,6 +31,8 @@ namespace VertigoCase.Systems.WheelSystem
                 var sizeDelta = rewardableItems[i].CalculateRectUIIconSize(imageItem.FitToFrame(imageItem.transform.parent.GetComponent<RectTransform>() as RectTransform));
                 imageItem.rectTransform.sizeDelta = sizeDelta;
                 wheelParentPivot.GetChild(i).GetChild(1).GetComponent<TextMeshProUGUI>().SetText("x " + rewardableItems[i].RewardAmount.ToString());
+                if (rewardableItems[i].RewardType == VertigoCase.Systems.ZoneSystem.RewardType.Deadly)
+                    wheelParentPivot.GetChild(i).GetChild(1).GetComponent<TextMeshProUGUI>().SetText(string.Empty);
                 await UniTask.Delay(200);
             }
         }
@@ -40,12 +42,12 @@ namespace VertigoCase.Systems.WheelSystem
             {
                 wheelParentPivot.GetChild(i).DOScale(Vector3.zero, .3f);
                 wheelParentPivot.GetChild(i).GetChild(0).GetChild(0).GetComponent<Image>().enabled = false;
-                wheelParentPivot.GetChild(i).GetChild(1).GetComponent<TextMeshProUGUI>().SetText("0");
                 await UniTask.Delay(100);
             }
             for (int i = 0; i < wheelParentPivot.childCount; i++)
             {
                 wheelParentPivot.GetChild(i).GetChild(0).GetChild(0).GetComponent<Image>().enabled = false;
+                wheelParentPivot.GetChild(i).GetChild(1).GetComponent<TextMeshProUGUI>().SetText("0");
             }
         }
 

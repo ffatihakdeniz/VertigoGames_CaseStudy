@@ -13,7 +13,7 @@ namespace VertigoCase.Runtime
 
         void Awake()
         {
-            gameData.currentLevel = 1;
+            gameData.currentLevel = gameData.startedLevel;
             Initializer();
         }
         void Initializer()

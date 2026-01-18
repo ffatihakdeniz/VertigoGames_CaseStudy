@@ -10,42 +10,50 @@ namespace VertigoCase.Systems.PanelSystem
 {
     public class BombPanelController : MonoBehaviour
     {
+        private static readonly int BombPanelHash = Animator.StringToHash("bombPanelAnimation");
         [Inject] InventoryController inventoryController;
 
-        Button buttonRevive;
+        Button _buttonRevive;
+        Button _buttonRevive2;
         Button buttonGive;
 
         void OnEnable()
         {
             inventoryController.SetSiblingIndex(SetSiblingType.TransformLastSibling);
 
-            buttonRevive.onClick.AddListener(ButtonReviveHandler);
+            _buttonRevive.onClick.AddListener(ButtonReviveHandler);
+            _buttonRevive2.onClick.AddListener(ButtonReviveHandler);
             buttonGive.onClick.AddListener(ButtonGiveHandler);
+            transform.GetComponent<Animator>().Play(BombPanelHash, 0, 0f);
         }
         void OnDisable()
         {
             inventoryController.SetSiblingIndex(SetSiblingType.StartSiblingPosition);
 
-            buttonRevive.onClick.RemoveListener(ButtonReviveHandler);
+            _buttonRevive.onClick.RemoveListener(ButtonReviveHandler);
+            _buttonRevive2.onClick.RemoveListener(ButtonReviveHandler);
             buttonGive.onClick.RemoveListener(ButtonGiveHandler);
         }
 
         void ButtonReviveHandler()
-        {
-            Application.Quit();
-        }
-
-        void ButtonGiveHandler()
         {
             EventBus.Fire<PrepareNewLevelEvent>();
             gameObject.SetActive(false);
             //TODO Kazanc - kayip sistyemi eklenecek
         }
 
+        void ButtonGiveHandler()
+        {
+            Application.Quit();
+        }
+
         void OnValidate()
         {
-            if (buttonRevive == null)
-                buttonRevive = transform.Find("ui_bombpanel_button_revive").GetComponent<Button>();
+            if (_buttonRevive == null)
+                _buttonRevive = transform.Find("ui_bombpanel_button_revive__1").GetComponent<Button>();
+
+            if (_buttonRevive2 == null)
+                _buttonRevive2 = transform.Find("ui_bombpanel_button_revive__2").GetComponent<Button>();
 
             if (buttonGive == null)
                 buttonGive = transform.Find("ui_bombpanel_button_give").GetComponent<Button>();

@@ -15,6 +15,6 @@ MonoBehaviour:
   maxLevel: -1
   zoneMultiplierIncreaseRate: 0.6
   startedLevel: 1
-  currentLevel: 1
+  currentLevel: 53
   currentZoneIntervalCount: 0
   isFirstLaunch: 0

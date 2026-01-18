@@ -42,7 +42,6 @@ namespace VertigoCase.Systems.CardSystem
         }
         public void CreateParticle(RewardedItemInfo rewardInfo, Transform attractorTransform)
         {
-            print("Create Particle");
             rewardedItemInfo = rewardInfo;
             CreateParticle(attractorTransform);
         }

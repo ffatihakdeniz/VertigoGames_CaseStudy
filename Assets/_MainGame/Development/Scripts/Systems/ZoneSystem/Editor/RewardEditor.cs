@@ -159,7 +159,6 @@ namespace VertigoCase.Systems.ZoneSystem
             if (nativeUISize.x <= 0f || nativeUISize.y <= 0f)
                 return;
 
-            // 2) "Auto-fit to frame" scale (contain) -> icon normalde HER ZAMAN frame'e sigar
             float fitScale = Mathf.Min(_frameSize.x / nativeUISize.x, _frameSize.y / nativeUISize.y);
             fitScale = Mathf.Max(0f, fitScale);
 
@@ -235,7 +234,7 @@ namespace VertigoCase.Systems.ZoneSystem
 
                 // UX: hizli slider
                 float v = _scaleMultiplier.floatValue;
-                float nv = EditorGUILayout.Slider("Overflow Slider", v, 0.5f, 1.5f);
+                float nv = EditorGUILayout.Slider("Overflow Slider", v, 0.1f, 3f);
                 if (!Mathf.Approximately(nv, v))
                     _scaleMultiplier.floatValue = nv;
             }

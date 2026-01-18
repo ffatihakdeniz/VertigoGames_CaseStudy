@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardType: 0
   rewardName: Bomb Exploded
+  rewardID: 0
   zoneType: 0
   icon: {fileID: 21300000, guid: e343a50e942eb46c5880e11d0fe0b26d, type: 3}
   baseAmount: 1
-  scale: 0
-  scaleMultiplier: 1
+  scaleMultiplier: 1.3

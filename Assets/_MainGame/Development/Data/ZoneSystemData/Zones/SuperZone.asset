@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slidePanelLevelPointColor: {r: 1, g: 0.7254902, b: 0, a: 1}
   slidePanelLevelTextCursorColor: {r: 1, g: 0.84313726, b: 0, a: 1}
-  triggerInterval: 5
+  triggerInterval: 30
   rewardValueMultiplier: 3
-  useIntervalProgression: 1
+  useIntervalProgression: 0
   zoneInfoSuperRewards:
   - reward: {fileID: 11400000, guid: a218becfd9d98445e9d1e9d6674c4c96, type: 2}
     level: 5

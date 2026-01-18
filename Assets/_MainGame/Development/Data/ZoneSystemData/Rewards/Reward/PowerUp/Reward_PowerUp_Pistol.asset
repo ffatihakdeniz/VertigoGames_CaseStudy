@@ -17,5 +17,5 @@ MonoBehaviour:
   rewardID: 53
   zoneType: 0
   icon: {fileID: 21300000, guid: 73d8740d668eb4c789ddb165c33e2f66, type: 3}
-  baseAmount: 5
-  scaleMultiplier: 0.7
+  baseAmount: 10
+  scaleMultiplier: 0.8
