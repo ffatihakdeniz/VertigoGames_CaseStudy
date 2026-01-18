@@ -1,3 +1,4 @@
+using VertigoCase.Runtime.Data;
 namespace VertigoCase.Runtime
 {
     public interface IGameDataConsumer

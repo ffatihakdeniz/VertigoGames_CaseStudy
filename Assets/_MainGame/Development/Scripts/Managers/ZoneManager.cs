@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Patterns.Singleton;
 using VertigoCase.Runtime;
+using VertigoCase.Runtime.Data;
 
 namespace VertigoCase.Systems.ZoneSystem
 {
@@ -38,6 +39,7 @@ namespace VertigoCase.Systems.ZoneSystem
             get => gameData.currentLevel;
             private set => gameData.currentLevel = Mathf.Max(0, value);
         }
+        public ZoneType CurrentZoneType => _rewardResolver.GetZoneByLevel(CurrentLevel);
 
         public int CurrentZoneGeneralIntervalCount
         {

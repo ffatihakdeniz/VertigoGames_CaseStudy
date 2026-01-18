@@ -22,30 +22,21 @@ namespace VertigoCase.Helpers.Extensions
                duration
            ).SetEase(Ease.OutCubic);
         }
-        public static void DOTypeTextScalePulse(this TextMeshProUGUI text, int targetValue, float duration, float pulseScale = 1.1f)
+        public static void DOTypeTextScalePulse(this TextMeshProUGUI text, int targetValue, float duration, float pulseScale = 1.15f)
         {
             int startValue = int.TryParse(text.text, out int v) ? v : 0;
             Transform tr = text.transform;
-            tr.DOKill(); DOTween.Kill(text);
 
-            Tween valueTween = DOTween.To(
-                () => startValue,
-                x =>
-                {
-                    startValue = x;
-                    text.SetText(x.ToString());
-                },
-                targetValue,
-                duration
-            ).SetEase(Ease.OutCubic).SetTarget(text);
+            tr.DOKill();
+            DOTween.Kill(text);
 
-            Tween scaleTween = tr.DOScale(pulseScale, .2f).SetLoops(-1, LoopType.Yoyo).SetTarget(tr);
+            Tween valueTween = DOTween.To(() => startValue, x => { startValue = x; text.SetText(x.ToString()); }, targetValue, duration)
+                .SetEase(Ease.OutCubic).SetTarget(text).OnComplete(() => { tr.localScale = Vector3.one; });
 
-            valueTween.OnComplete(() =>
-            {
-                scaleTween.Kill();
-                tr.DOScale(1, .2f).SetTarget(tr);
-            });
+            Tween scaleTween = tr.DOScale(pulseScale, duration / Mathf.Min((float)targetValue, 20)).
+            SetLoops((int)Mathf.Min(Mathf.Max(targetValue - 2, 2), 18), LoopType.Yoyo).SetTarget(tr);
+            //scaleTween.SetDelay(duration * 0.95f).OnStart(() => { scaleTween.Kill(); tr.localScale = Vector3.one; });
+
         }
 
         public static void DoMaxSize(this Transform textTransform, int maxSize) =>
@@ -67,6 +58,12 @@ namespace VertigoCase.Helpers.Extensions
                 return 1;
 
             return (level - 1) / interval + 1;
+        }
+        public static float NormalizeAngle(float a)
+        {
+            a %= 360f;
+            if (a < 0f) a += 360f;
+            return a;
         }
 
     }

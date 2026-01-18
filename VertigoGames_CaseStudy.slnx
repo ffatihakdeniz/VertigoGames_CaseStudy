@@ -16,6 +16,7 @@
   <Project Path="Unity.Timeline.csproj" />
   <Project Path="Unity.Mathematics.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="ParticleImage.csproj" />
   <Project Path="UniTask.DOTween.csproj" />
   <Project Path="Unity.Recorder.csproj" />
   <Project Path="Unity.2D.Common.Runtime.csproj" />
@@ -23,7 +24,6 @@
   <Project Path="UniTask.TextMeshPro.csproj" />
   <Project Path="Unity.InternalAPIEngineBridge.001.csproj" />
   <Project Path="Unity.Recorder.Base.csproj" />
-  <Project Path="ParticleImage.csproj" />
   <Project Path="Unity.PlasticSCM.Editor.csproj" />
   <Project Path="Unity.VisualScripting.Core.Editor.csproj" />
   <Project Path="Zenject-PoolMonitor-Editor.csproj" />
@@ -52,6 +52,7 @@
   <Project Path="VFolders.csproj" />
   <Project Path="Unity.VisualScripting.State.Editor.csproj" />
   <Project Path="Unity.Searcher.Editor.csproj" />
+  <Project Path="ParticleImage.Editor.csproj" />
   <Project Path="UniTask.Editor.csproj" />
   <Project Path="Assembly-CSharp-Editor-firstpass.csproj" />
   <Project Path="Zenject-ReflectionBaking-Editor.csproj" />
@@ -62,5 +63,4 @@
   <Project Path="Zenject-Editor.csproj" />
   <Project Path="Unity.EditorCoroutines.Editor.csproj" />
   <Project Path="Unity.VisualScripting.Shared.Editor.csproj" />
-  <Project Path="ParticleImage.Editor.csproj" />
 </Solution>

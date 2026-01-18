@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace VertigoCase.Runtime
+namespace VertigoCase.Runtime.Data
 {
-    [CreateAssetMenu(fileName = "GameData", menuName = "VertigoCase/Game Data")]
+    [CreateAssetMenu(fileName = "GameData", menuName = "Vertigo/WheelGame/GameData")]
     public class GameDataSO : ScriptableObject
     {
         [Header("Settings")]

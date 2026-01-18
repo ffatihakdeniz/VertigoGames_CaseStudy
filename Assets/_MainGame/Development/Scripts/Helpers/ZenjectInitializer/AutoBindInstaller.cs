@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VertigoCase.Runtime;
 using VertigoCase.Systems.CardSystem;
+using VertigoCase.Systems.WheelSystem;
 using Zenject;
 
 public class AutoBindInstaller : MonoInstaller

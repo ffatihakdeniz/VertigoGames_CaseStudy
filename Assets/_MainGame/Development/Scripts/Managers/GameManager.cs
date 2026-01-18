@@ -1,5 +1,6 @@
 using UnityEngine;
 using Patterns.Singleton;
+using VertigoCase.Runtime.Data;
 
 namespace VertigoCase.Runtime
 {

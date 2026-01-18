@@ -9,6 +9,7 @@ using Zenject;
 using DG.Tweening;
 using static VertigoCase.Helpers.Extensions.ImageExtensions;
 using VertigoCase.Systems.ZoneSystem;
+using VertigoCase.Systems.WheelSystem;
 
 namespace VertigoCase.Systems.CardSystem
 {
@@ -85,7 +86,7 @@ namespace VertigoCase.Systems.CardSystem
         //TESTT
         public List<RewardSO> rewardList;
         List<RewardedItemInfo> rewardItemInfoListTest = new();
-        public RewardedListboxController rewardedItemPrefab;
+        public InventoryController rewardedItemPrefab;
 
         void Start()
         {

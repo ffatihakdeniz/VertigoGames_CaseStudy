@@ -6,7 +6,7 @@ using static VertigoCase.Helpers.Extensions.GeneralExtensions;
 using static VertigoCase.Helpers.Extensions.ImageExtensions;
 using DG.Tweening;
 
-public class RewardedItemListboxController : MonoBehaviour
+public class InventoryItemController : MonoBehaviour
 {
     [SerializeField] Image imageItem;
     [SerializeField] TextMeshProUGUI textItemRewardCount;

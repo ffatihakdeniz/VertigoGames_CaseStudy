@@ -5,11 +5,11 @@ using UnityEngine;
 using VertigoCase.Runtime;
 using VertigoCase.Systems.ZoneSystem;
 
-public class RewardedListboxController : MonoBehaviour
+public class InventoryController : MonoBehaviour
 {
     [SerializeField] GameObject rewardedItemPrefab;
     [SerializeField] Transform rewardedItemRoot;
-    private List<RewardedItemListboxController> rewardedItem = new List<RewardedItemListboxController>();
+    private List<InventoryItemController> rewardedItem = new List<InventoryItemController>();
 
     public List<RewardSO> rewardList;
     List<RewardedItemInfo> rewardItemInfoListTest = new();
@@ -39,7 +39,7 @@ public class RewardedListboxController : MonoBehaviour
         }
 
         var newItem = Instantiate(rewardedItemPrefab, rewardedItemRoot)
-            .GetComponent<RewardedItemListboxController>();
+            .GetComponent<InventoryItemController>();
 
         rewardedItem.Add(newItem);
         newItem.InitItem(reward);
@@ -56,7 +56,7 @@ public class RewardedListboxController : MonoBehaviour
         }
 
         var newItem = Instantiate(rewardedItemPrefab, rewardedItemRoot)
-            .GetComponent<RewardedItemListboxController>();
+            .GetComponent<InventoryItemController>();
 
         rewardedItem.Add(newItem);
         newItem.InitItem(reward, 2f);
