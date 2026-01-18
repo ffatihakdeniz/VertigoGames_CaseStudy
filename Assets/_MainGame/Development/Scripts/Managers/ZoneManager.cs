@@ -28,7 +28,7 @@ namespace VertigoCase.Systems.ZoneSystem
         }
         void OnDisable()
         {
-            EventBus.Subscribe<ChangedLevelEvent>(OnNewLevelStartHandler);
+            EventBus.Unsubscribe<ChangedLevelEvent>(OnNewLevelStartHandler);
         }
         void OnNewLevelStartHandler()
         {

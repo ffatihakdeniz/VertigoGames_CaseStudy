@@ -21,7 +21,7 @@ namespace VertigoCase.Systems.WheelSystem
 
         private ZoneType currentWheelVisualType;
         private WheelSpinnerService _wheelSpinnerService;
-        private WheelInventoryService _wheelInventoryService;
+        private WheelSliceView _wheelInventoryService;
         List<RewardedItemInfo> currentRewards;
 
         public void Initialize()
@@ -29,7 +29,7 @@ namespace VertigoCase.Systems.WheelSystem
             ChangeWheelVisual(ZoneType.Normal);
             currentRewards = new List<RewardedItemInfo>();
             _wheelSpinnerService = new WheelSpinnerService(spinSettingsData, wheelImage.transform);
-            _wheelInventoryService = new WheelInventoryService(wheelImage.transform);
+            _wheelInventoryService = new WheelSliceView(wheelImage.transform);
             for (int i = 0; i < wheelImage.transform.childCount; i++)
                 wheelImage.transform.GetChild(i).localScale = Vector3.zero;
         }

@@ -22,7 +22,7 @@ namespace VertigoCase.Systems.InventorySystem
         {
             foreach (var item in rewardedItem)
             {
-                if (item.rewardedItemInfo.RewardName == reward.RewardName)
+                if (item.rewardedItemInfo.RewardID == reward.RewardID)
                 {
                     item.SetItem(reward, 2f);
                     return item.transform.GetChild(0);

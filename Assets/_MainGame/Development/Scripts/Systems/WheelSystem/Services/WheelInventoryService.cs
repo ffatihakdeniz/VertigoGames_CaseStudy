@@ -13,10 +13,10 @@ namespace VertigoCase.Systems.WheelSystem
     /// <summary>
     /// Non-Mono: wheel icerisine eklenen rewardableItemlerdan sorumlu servis.
     /// </summary>
-    public sealed class WheelInventoryService
+    public sealed class WheelSliceView
     {
         private readonly Transform wheelParentPivot;
-        public WheelInventoryService(Transform pivot)
+        public WheelSliceView(Transform pivot)
         {
             this.wheelParentPivot = pivot;
         }

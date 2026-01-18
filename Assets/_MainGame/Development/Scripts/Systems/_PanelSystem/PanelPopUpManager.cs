@@ -11,11 +11,11 @@ namespace VertigoCase.Systems.PanelSystem
             BombPanel.SetActive(true);
         }
 
-        [SerializeField] GameObject ExitPanel;
+        /*[SerializeField] GameObject ExitPanel;
         public void OpenExitPanel()
         {
-            BombPanel.SetActive(true);
-        }
+            //BombPanel.SetActive(true);
+        }*/
 
 
     }
