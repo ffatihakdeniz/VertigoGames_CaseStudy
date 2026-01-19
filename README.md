@@ -74,3 +74,4 @@ Bu proje/sistemler aşağıdaki paketleri kullanıyor:
 
 ## Not
 Case kapsamında istenen kurallara uyum (UI, event kullanımı, data-driven yaklaşım) **özellikle** hedeflenmiştir.
+Video ve istenilen renderlar : https://drive.google.com/drive/folders/1l9PiJ_VU_CMpbsXwaS-ZAIsg2n7o0XWt
