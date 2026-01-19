@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad176b7d392e54a66bf356e630d51a2f, type: 3}
-  m_Name: SafeZone
+  m_Script: {fileID: 11500000, guid: 266fab68f604040728d3148bbcbfc4f8, type: 3}
+  m_Name: Reward_Money_Coin 2
   m_EditorClassIdentifier: 
-  slidePanelLevelPointColor: {r: 0, g: 1, b: 0.26666668, a: 1}
-  slidePanelLevelTextCursorColor: {r: 0.023529412, g: 1, b: 0, a: 1}
-  triggerInterval: 3
-  rewardValueMultiplier: 2
+  rewardType: 13
+  rewardName: Coin
+  rewardID: 300
+  zoneType: 0
+  icon: {fileID: 21300000, guid: 38f98835de95d4f8b953bec287496a11, type: 3}
+  baseAmount: 150
+  scaleMultiplier: 1.3
