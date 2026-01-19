@@ -31,13 +31,13 @@ namespace VertigoCase.Systems.InventorySystem
         {
             transform.SetChildrenSetActive(true);
             textItemRewardCount.DOTypeTextScalePulse(rewardedItemInfo.RewardAmount, 1.5f);
-            imageItem.transform.DOPunchScale(new Vector3(.2f, .2f, 1), 0.2f, 3, 1);
+            imageItem.transform.DOPunchScale(new Vector3(.4f, .4f, 1), 0.3f, 3, 1);
         }
         public void SetItem(RewardedItemInfo rewardInfo, float waitUntil = 0f)
         {
             rewardedItemInfo.RewardAmount += rewardInfo.RewardAmount;
-            DOVirtual.DelayedCall(waitUntil, () => SetValuesUseAnimation());//Test todo
-                                                                            //SetValuesUseAnimation();
+            DOVirtual.DelayedCall(waitUntil + .5f, () => SetValuesUseAnimation());//Test todo
+                                                                                  //SetValuesUseAnimation();
         }
 
     }

@@ -17,9 +17,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c1d8cda4806324e70908033dc325212f, type: 2}
   - {fileID: 11400000, guid: 1699caab998654f878b29f51c2a739c1, type: 2}
   spinDuration: 2.5
-  minRotations: 3
-  maxRotations: 6
-  rotateMode: 3
+  minRotations: 5
+  maxRotations: 8
+  rotateMode: 1
   ease: 10
   indicatorAngle: 90
   indicatorOffset: 22.5
