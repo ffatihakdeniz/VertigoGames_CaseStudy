@@ -61,6 +61,7 @@ Bu proje/sistemler aşağıdaki paketleri kullanıyor:
 - Spin animasyonu designer edasıyla editörden spinsettings datası üzerinden değiştirilebilir
 - Oyuncunun kazanbileceği itemlar editörden özel editör koduyla değiştirilebilir, yenisi eklenebilir ve boyutlandırma ayarları yapılabilir.
 - SOLID prensipleri, design patternlara olabildiğince uyum sağlanmya çalışılmıştır.
+- 9-Sliced Texture ve SpriteAtlas kullanılmıştır.
 
 ---
 
@@ -73,3 +74,4 @@ Bu proje/sistemler aşağıdaki paketleri kullanıyor:
 
 ## Not
 Case kapsamında istenen kurallara uyum (UI, event kullanımı, data-driven yaklaşım) **özellikle** hedeflenmiştir.
+Video ve istenilen renderlar : https://drive.google.com/drive/folders/1l9PiJ_VU_CMpbsXwaS-ZAIsg2n7o0XWt
